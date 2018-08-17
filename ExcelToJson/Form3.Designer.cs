@@ -280,7 +280,7 @@
             // 
             this.TemplateSectionId.Location = new System.Drawing.Point(491, 150);
             this.TemplateSectionId.Maximum = new decimal(new int[] {
-            1000,
+            1000000,
             0,
             0,
             0});

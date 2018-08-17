@@ -99,7 +99,8 @@ namespace ExcelToJson
                 file.WriteLine("id:"+ templateId +",");
                 file.WriteLine("uuid: '" + Guid.NewGuid() +"',");
                 file.Write("jsonTemplate: " + sb.ToString() + ",");
-                file.WriteLine(" OrganizationId: null,");
+                file.WriteLine(" OrganizationId:,");
+                file.WriteLine("isDefaultTemplate: true,");
                 file.WriteLine("createdAt: new Date(),");
                 file.WriteLine(" })");
                 file.WriteLine(".then(() => {");
@@ -150,14 +151,19 @@ namespace ExcelToJson
             }
 
         }
-        string FetchValue(int CurrentRowNumber,decimal currentColumnNumber)
+        string FetchValue(int CurrentRowNumber,decimal currentColumnNumber,bool isContent=false)
         {
             string returnvalue = "";
-
             returnvalue= Convert.ToString((range.Cells[CurrentRowNumber, currentColumnNumber] as Excel.Range).Value2);
             if(returnvalue==null)
             {
                 returnvalue = "";
+                if (isContent)
+                {
+                    returnvalue = "<p><br></p>";
+
+                }
+              
             }
             returnvalue = returnvalue.Trim().Replace("\n", "").Replace("\t", "");
             return returnvalue.Trim();
@@ -222,7 +228,7 @@ namespace ExcelToJson
                     JARRAYOptionsTemp.title = "";
                     JARRAYOptionsTemp.order = newOrder;
                     JARRAYOptionsTemp.level = newLevel;
-                    JARRAYOptionsTemp.content = FetchValue(CurrentRowNumber, boliertext.Value);
+                    JARRAYOptionsTemp.content = FetchValue(CurrentRowNumber, boliertext.Value,true);
                     JARRAYOptionsTemp.options = new JObject();
                     JARRAYOptionsTemp.instructionText = "";
                     JARRAYOptionsTemp.exampleText = FetchValue(CurrentRowNumber, exampleText.Value); ;
@@ -259,8 +265,7 @@ namespace ExcelToJson
                 }
                 else
                 {
-                    sectionTemp.content = FetchValue(CurrentRowNumber, boliertext.Value);
-                    
+                    sectionTemp.content = FetchValue(CurrentRowNumber, boliertext.Value,true);
                     sectionTemp.exampleText = FetchValue(CurrentRowNumber, exampleText.Value);
                     JSONIndividualSeeders.Add(sectionTemp);
                 }
