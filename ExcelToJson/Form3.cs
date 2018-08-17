@@ -104,10 +104,8 @@ namespace ExcelToJson
                 file.WriteLine("createdAt: new Date(),");
                 file.WriteLine(" })");
                 file.WriteLine(".then(() => {");
-                file.WriteLine("console.log(`Added Template`);");
                 file.WriteLine("})");
                 file.WriteLine(".catch (error => {");
-                file.WriteLine(" console.log(`ERROR ${ error}`);");
                 file.WriteLine(" }); ");
                 file.WriteLine("  },");
                 file.WriteLine(" down: (queryInterface, Sequelize) => {");
