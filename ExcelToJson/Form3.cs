@@ -189,8 +189,8 @@ namespace ExcelToJson
                 }
                 currentSectionNumber = FetchValue(CurrentRowNumber, SectionNumber.Value);
                 section.title = FetchValue(CurrentRowNumber, SectionNames.Value);
-                section.order = newOrder;
-                section.level = newLevel;
+                section.order = newOrder.ToString();
+                section.level = newLevel.ToString();
                 section.type = FetchValue(CurrentRowNumber, sectionType.Value);
                 currentHeading = FetchValue(CurrentRowNumber, sectionType.Value);
                 section.instructionText = "";
@@ -202,8 +202,8 @@ namespace ExcelToJson
                 sectionTemp.number = section.number;
                 sectionTemp.sectionId = section.sectionId;
                 sectionTemp.title = section.title;
-                sectionTemp.order = section.order;
-                sectionTemp.level = section.level;
+                sectionTemp.order = section.order.ToString();
+                sectionTemp.level = section.level.ToString();
                 sectionTemp.instructionText = FetchValue(CurrentRowNumber, instructionText.Value);
                 sectionTemp.exampleText = "";
                 sectionTemp.options = new JObject();
@@ -224,8 +224,8 @@ namespace ExcelToJson
                     JARRAYOptionsTemp.number = "";
                     JARRAYOptionsTemp.type = "FullText";
                     JARRAYOptionsTemp.title = "";
-                    JARRAYOptionsTemp.order = newOrder;
-                    JARRAYOptionsTemp.level = newLevel;
+                    JARRAYOptionsTemp.order = newOrder.ToString();
+                    JARRAYOptionsTemp.level = newLevel.ToString();
                     JARRAYOptionsTemp.content = FetchValue(CurrentRowNumber, boliertext.Value,true);
                     JARRAYOptionsTemp.options = new JObject();
                     JARRAYOptionsTemp.instructionText = "";
@@ -237,9 +237,9 @@ namespace ExcelToJson
                     JARRAYOptions1.options = new JObject();
                     JARRAYOptions1.sections = new JArray();
                     JARRAYOptions1.title = "";
-                    JARRAYOptions1.order = newOrder;
+                    JARRAYOptions1.order = newOrder.ToString();
                     JARRAYOptions1.number = "";
-                    JARRAYOptions1.level = newLevel;
+                    JARRAYOptions1.level = newLevel.ToString();
                     //section.type = (string)(range.Cells[CurrentRowNumber, sectionType.Value] as Excel.Range).Value2;
                     section.content = "";
                     section.sections.Add(JARRAYOptions1);
